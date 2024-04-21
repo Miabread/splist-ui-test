@@ -1,9 +1,14 @@
+import { createFileRoute } from '@tanstack/react-router';
 import classNames from 'classnames';
 import { useState } from 'react';
 
+export const Route = createFileRoute('/testing/autocomplete')({
+    component: Autocomplete,
+});
+
 const commands = ['foo', 'bar', 'foobar', 'meow', 'mrrp', 'foomeow', 'foomrrp'];
 
-function App() {
+function Autocomplete() {
     const [draft, setDraft] = useState(['']);
     const [suggestionIndex, setSuggestionIndex] = useState<null | number>(null);
 
@@ -53,4 +58,4 @@ function App() {
     );
 }
 
-export default App;
+export default Autocomplete;
