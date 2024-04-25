@@ -1,5 +1,5 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
-import { PropsWithChildren } from 'react';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { TabSidebar } from './-root/TabSidebar';
 
 export const Route = createRootRoute({
     component: Root,
@@ -8,7 +8,7 @@ export const Route = createRootRoute({
 function Root() {
     return (
         <div className="flex h-screen w-screen text-white">
-            <TabNavigation />
+            <TabSidebar />
             <nav className="bg-slate-800 w-72 flex flex-col">
                 <header className="h-14 grid place-items-center">
                     <h1 className="text-2xl font-bold">Tab Title</h1>
@@ -30,36 +30,6 @@ function Root() {
                 <footer className="bg-slate-700 h-16 grid place-items-center">footer</footer>
             </div>
             <nav className="bg-slate-800 w-72 grid place-items-center">sidebar</nav>
-        </div>
-    );
-}
-
-function TabNavigation() {
-    return (
-        <nav className="flex flex-col bg-slate-900 h-screen items-center">
-            <Link to="/">
-                <TabLink>Home</TabLink>
-            </Link>
-            <hr className="border-white w-2/4" />
-            {[1, 2, 3, 4, 5].map((it) => (
-                <Link key={it} to="/$tab" params={{ tab: it.toString() }}>
-                    <TabLink>{it}</TabLink>
-                </Link>
-            ))}
-        </nav>
-    );
-}
-
-function TabLink({ children }: PropsWithChildren) {
-    return (
-        <div
-            className="
-                w-14 h-14 m-2 grid place-items-center
-                rounded-[1.75rem] hover:rounded-2xl transition-[border-radius] delay-75
-                bg-orange-300 text-black font-bold text-lg
-            "
-        >
-            {children}
         </div>
     );
 }

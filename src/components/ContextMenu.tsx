@@ -14,7 +14,7 @@ export const useContextMenu = () => {
     }, []);
 
     const parentProps = {
-        onContextMenu(e: React.MouseEvent) {
+        onContextMenu(e: React.MouseEvent<unknown>) {
             e.preventDefault();
             e.stopPropagation();
             setPoint({ x: e.pageX, y: e.pageY });
@@ -23,7 +23,7 @@ export const useContextMenu = () => {
 
     const childProps = point && {
         style: { top: `${point.y}px`, left: `${point.x}px`, position: 'absolute' } as const,
-        onContextMenu(e: React.MouseEvent) {
+        onContextMenu(e: React.MouseEvent<unknown>) {
             e.preventDefault();
             e.stopPropagation();
         },
@@ -39,16 +39,24 @@ interface Props {
 export function ContextMenu({ propsFromHook, children }: PropsWithChildren<Props>) {
     if (!propsFromHook) return null;
     return (
-        <ul {...propsFromHook} className="bg-slate-900 text-stone-300 p-2 rounded">
+        <ul {...propsFromHook} className="bg-slate-900 text-stone-300 p-2 rounded text-base font-normal shadow">
             {children}
         </ul>
     );
 }
 
-export function ContextMenuItem({ children, ...props }: PropsWithChildren<JSX.IntrinsicElements['li']>) {
+interface ContextMenuItemProps extends PropsWithChildren<JSX.IntrinsicElements['li']> {
+    icon?: React.ReactElement;
+}
+
+export function ContextMenuItem({ children, icon, ...props }: ContextMenuItemProps) {
     return (
-        <li {...props} className="hover:bg-orange-300 active:bg-orange-400 hover:text-white rounded p-1">
+        <li
+            {...props}
+            className="hover:bg-orange-300 active:bg-orange-400 hover:text-black rounded p-1 flex justify-between items-center"
+        >
             {children}
+            {icon && <span className="ml-2">{icon}</span>}
         </li>
     );
 }
