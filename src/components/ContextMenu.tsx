@@ -1,11 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState, JSX } from 'react';
 
-export const Route = createFileRoute('/testing/right_click')({
-    component: RightClick,
-});
-
-const useContextMenu = () => {
+export const useContextMenu = () => {
     const [point, setPoint] = useState<null | { x: number; y: number }>(null);
 
     useEffect(() => {
@@ -27,10 +22,7 @@ const useContextMenu = () => {
     };
 
     const childProps = point && {
-        style: { top: `${point.y}px`, left: `${point.x}px` },
-        onClick(e: React.MouseEvent) {
-            e.stopPropagation();
-        },
+        style: { top: `${point.y}px`, left: `${point.x}px`, position: 'absolute' } as const,
         onContextMenu(e: React.MouseEvent) {
             e.preventDefault();
             e.stopPropagation();
@@ -40,17 +32,23 @@ const useContextMenu = () => {
     return { parentProps, childProps };
 };
 
-function RightClick() {
-    const { parentProps, childProps } = useContextMenu();
+interface Props {
+    propsFromHook: ReturnType<typeof useContextMenu>['childProps'];
+}
 
+export function ContextMenu({ propsFromHook, children }: PropsWithChildren<Props>) {
+    if (!propsFromHook) return null;
     return (
-        <div className="bg-white text-black w-40 h-32 grid place-content-center" {...parentProps}>
-            Right click me
-            {childProps && (
-                <div className="bg-black text-white absolute w-20 h-40 grid place-content-center" {...childProps}>
-                    Clicked!!
-                </div>
-            )}
-        </div>
+        <ul {...propsFromHook} className="bg-slate-900 text-stone-300 p-2 rounded">
+            {children}
+        </ul>
+    );
+}
+
+export function ContextMenuItem({ children, ...props }: PropsWithChildren<JSX.IntrinsicElements['li']>) {
+    return (
+        <li {...props} className="hover:bg-orange-300 active:bg-orange-400 hover:text-white rounded p-1">
+            {children}
+        </li>
     );
 }
