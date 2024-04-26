@@ -2,7 +2,8 @@ import { Link } from '@tanstack/react-router';
 import { PropsWithChildren } from 'react';
 import { useStore } from '../../state';
 import { ContextMenu, ContextMenuItem, useContextMenu } from '../../components/ContextMenu';
-import { GoArrowDown, GoArrowUp, GoDuplicate, GoX } from 'react-icons/go';
+import { GoArrowDown, GoArrowUp, GoDuplicate, GoPlus, GoX, GoXCircle } from 'react-icons/go';
+import classNames from 'classnames';
 
 export function TabSidebar() {
     const tabs = useStore((store) => store.tabs);
@@ -20,13 +21,19 @@ export function TabSidebar() {
 
 function HomeLink() {
     const { parentProps, childProps } = useContextMenu();
-    const resetTabs = useStore((store) => store.resetTabs);
+    const createNewTab = useStore((store) => store.createNewTab);
+    const closeAllTabs = useStore((store) => store.closeAllTabs);
 
     return (
         <Link to="/" {...parentProps}>
-            <TabSidebarItem>Home</TabSidebarItem>
+            <TabSidebarItem active={childProps !== null}>Home</TabSidebarItem>
             <ContextMenu propsFromHook={childProps}>
-                <ContextMenuItem onClick={() => resetTabs()}>Reset all tabs</ContextMenuItem>
+                <ContextMenuItem onClick={() => createNewTab()} icon={<GoPlus size={16} />}>
+                    New tab
+                </ContextMenuItem>
+                <ContextMenuItem onClick={() => closeAllTabs()} icon={<GoXCircle size={16} />}>
+                    Close all
+                </ContextMenuItem>
             </ContextMenu>
         </Link>
     );
@@ -41,7 +48,7 @@ function TabLink({ link, index }: { link: string; index: number }) {
 
     return (
         <Link to={link} {...parentProps}>
-            <TabSidebarItem>
+            <TabSidebarItem active={childProps !== null}>
                 {link}
                 <ContextMenu propsFromHook={childProps}>
                     <ContextMenuItem onClick={() => closeTab(index)} icon={<GoX size={16} />}>
@@ -62,14 +69,19 @@ function TabLink({ link, index }: { link: string; index: number }) {
     );
 }
 
-function TabSidebarItem({ children }: PropsWithChildren) {
+interface TabSidebarItemProps {
+    active: boolean;
+}
+
+function TabSidebarItem({ children, active }: PropsWithChildren<TabSidebarItemProps>) {
     return (
         <div
-            className="
-                w-14 h-14 m-2 grid place-items-center
-                rounded-[1.75rem] hover:rounded-2xl transition-[border-radius] delay-75
-                bg-orange-300 text-black font-bold text-lg
-            "
+            className={classNames(
+                'w-14 h-14 m-2 grid place-items-center',
+                'bg-orange-300 text-black font-bold text-lg',
+                'rounded-[1.75rem] hover:rounded-2xl transition-[border-radius] delay-75',
+                active && 'rounded-2xl',
+            )}
         >
             {children}
         </div>

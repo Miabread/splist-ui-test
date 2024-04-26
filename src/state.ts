@@ -6,16 +6,12 @@ interface State {
     duplicateTab(index: number): void;
     shiftTabUp(index: number): void;
     shiftTabDown(index: number): void;
-    resetTabs(): void;
+    createNewTab(): void;
+    closeAllTabs(): void;
 }
 
 export const useStore = create<State>()((set) => ({
-    tabs: [1, 2, 3, 4, 5].map((i) => `/${i}`),
-    resetTabs: () => {
-        set({
-            tabs: [1, 2, 3, 4, 5].map((i) => `/${i}`),
-        });
-    },
+    tabs: [5, 4, 3, 2, 1].map((i) => `/${i}`),
     closeTab: (index) => {
         set((state) => ({
             tabs: state.tabs.toSpliced(index, 1),
@@ -40,6 +36,16 @@ export const useStore = create<State>()((set) => ({
             const tabs = state.tabs.slice();
             [tabs[index], tabs[index + 1]] = [tabs[index + 1], tabs[index]];
             return { tabs };
+        });
+    },
+    createNewTab() {
+        set((state) => ({
+            tabs: state.tabs.toSpliced(0, 0, `/${state.tabs.length + 1}`),
+        }));
+    },
+    closeAllTabs: () => {
+        set({
+            tabs: [],
         });
     },
 }));

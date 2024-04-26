@@ -1,5 +1,6 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TabSidebar } from './-root/TabSidebar';
+import { GoHash } from 'react-icons/go';
 
 export const Route = createRootRoute({
     component: Root,
@@ -15,8 +16,9 @@ function Root() {
                 </header>
                 <ul className="p-8 text-stone-300">
                     {[1, 2, 3, 4, 5].map((it) => (
-                        <li key={it} className="flex items-center text-lg">
-                            <span className="mr-2 font-bold italic text-2xl">#</span> Thread {it}
+                        <li key={it} className="m-4 flex items-center text-lg">
+                            <GoHash size={24} />
+                            <span className="pl-2">Thread {it}</span>
                         </li>
                     ))}
                 </ul>

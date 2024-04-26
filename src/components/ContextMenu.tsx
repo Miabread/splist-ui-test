@@ -53,10 +53,13 @@ export function ContextMenuItem({ children, icon, ...props }: ContextMenuItemPro
     return (
         <li
             {...props}
-            className="hover:bg-orange-300 active:bg-orange-400 hover:text-black rounded p-1 flex justify-between items-center"
+            className="
+                hover:bg-orange-300 active:bg-orange-400 hover:text-black
+                rounded p-1 flex justify-between items-center
+            "
         >
             {children}
-            {icon && <span className="ml-2">{icon}</span>}
+            {icon && <span className="ml-3">{icon}</span>}
         </li>
     );
 }
