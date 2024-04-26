@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { GoHash } from 'react-icons/go';
+import { ThreadSidebarItem } from './-root/ThreadSidebar';
 
 export const Route = createFileRoute('/$tab')({
     component: Tab,
@@ -15,10 +16,9 @@ function Tab() {
                 </header>
                 <ul className="p-8 text-stone-300">
                     {[1, 2, 3, 4, 5].map((it) => (
-                        <li key={it} className="m-4 flex items-center text-lg">
-                            <GoHash size={24} />
-                            <span className="pl-2">Thread {it}</span>
-                        </li>
+                        <ThreadSidebarItem key={it} icon={<GoHash size={24} />}>
+                            Thread {it}
+                        </ThreadSidebarItem>
                     ))}
                 </ul>
             </nav>
