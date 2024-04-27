@@ -4,16 +4,17 @@ export function LayoutContainer({ children }: PropsWithChildren) {
     return <div className="flex flex-col h-full w-full">{children}</div>;
 }
 
-interface LayoutHeaderProps {
+interface LayoutHeaderProps extends PropsWithChildren {
     title: string;
     icon: ReactElement;
 }
 
-export function LayoutHeader({ title, icon }: LayoutHeaderProps) {
+export function LayoutHeader({ title, icon, children }: LayoutHeaderProps) {
     return (
-        <header className="bg-slate-700 h-14 flex-shrink-0 flex items-center text-stone-300 border-b-slate-900 border-solid border-b-2">
-            <span className="pl-5">{icon}</span>
-            <h1 className="pl-3 text-white text-2xl font-bold">{title}</h1>
+        <header className="bg-slate-700 h-12 flex-shrink-0 flex items-center text-stone-300 border-b-slate-900 border-solid border-b-2 gap-3 pl-4 pr-5">
+            {icon}
+            <h1 className="text-white font-bold mr-auto">{title}</h1>
+            {children}
         </header>
     );
 }

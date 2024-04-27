@@ -13,7 +13,7 @@ function Tab() {
         <>
             <ThreadSidebar title={`Tab ${tab}`}>
                 {[1, 2, 3, 4, 5].map((it) => (
-                    <ThreadSidebarItem key={it} icon={<GoHash size={24} />}>
+                    <ThreadSidebarItem key={it} icon={<GoHash size={24} />} active={false}>
                         Thread {it}
                     </ThreadSidebarItem>
                 ))}

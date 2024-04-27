@@ -10,14 +10,26 @@ function Client() {
     return (
         <>
             <ThreadSidebar title="Splist Client">
-                <Link to="/client/">
-                    <ThreadSidebarItem icon={<GoServer size={24} />}>Servers</ThreadSidebarItem>
+                <Link to="/client/" activeOptions={{ exact: true }}>
+                    {({ isActive }) => (
+                        <ThreadSidebarItem icon={<GoServer size={24} />} active={isActive}>
+                            Servers
+                        </ThreadSidebarItem>
+                    )}
                 </Link>
                 <Link to="/client/logs">
-                    <ThreadSidebarItem icon={<GoAlert size={24} />}>Logs</ThreadSidebarItem>
+                    {({ isActive }) => (
+                        <ThreadSidebarItem icon={<GoAlert size={24} />} active={isActive}>
+                            Logs
+                        </ThreadSidebarItem>
+                    )}
                 </Link>
                 <Link to="/client/settings">
-                    <ThreadSidebarItem icon={<GoGear size={24} />}>Settings</ThreadSidebarItem>
+                    {({ isActive }) => (
+                        <ThreadSidebarItem icon={<GoGear size={24} />} active={isActive}>
+                            Settings
+                        </ThreadSidebarItem>
+                    )}
                 </Link>
             </ThreadSidebar>
             <Outlet />
