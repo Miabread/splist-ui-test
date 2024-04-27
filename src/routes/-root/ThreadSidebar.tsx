@@ -9,7 +9,7 @@ interface ThreadSidebarProps extends PropsWithChildren {
 export function ThreadSidebar({ children, title }: ThreadSidebarProps) {
     return (
         <LayoutSidebar>
-            <header className="h-14 grid place-items-center">
+            <header className="h-14 grid place-items-center border-b-slate-900 border-solid border-b-2 flex-shrink-0">
                 <h1 className="text-2xl font-bold">{title}</h1>
             </header>
             <ul className="p-2 text-stone-300">{children}</ul>

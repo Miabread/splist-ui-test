@@ -19,7 +19,7 @@ function Tab() {
                 ))}
             </ThreadSidebar>
             <LayoutContainer>
-                <LayoutHeader></LayoutHeader>
+                <LayoutHeader icon={<GoHash size={24} />} title="Thread" />
                 <LayoutMain>Hello tab {tab}!</LayoutMain>
                 <LayoutFooter></LayoutFooter>
             </LayoutContainer>
