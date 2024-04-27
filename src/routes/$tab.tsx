@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { GoHash } from 'react-icons/go';
 import { ThreadSidebar, ThreadSidebarItem } from './-root/ThreadSidebar';
+import { LayoutContainer, LayoutFooter, LayoutHeader, LayoutMain, LayoutSidebar } from './-root/Layout';
 
 export const Route = createFileRoute('/$tab')({
     component: Tab,
@@ -17,13 +18,12 @@ function Tab() {
                     </ThreadSidebarItem>
                 ))}
             </ThreadSidebar>
-            <div className="flex flex-col h-full w-full">
-                <header className="bg-slate-700 h-14 grid place-items-center">header</header>
-
-                <main className="grid place-items-center w-full h-screen bg-slate-700">Hello tab {tab}!</main>
-                <footer className="bg-slate-700 h-16 grid place-items-center">footer</footer>
-            </div>
-            <nav className="bg-slate-800 w-72 grid place-items-center">sidebar</nav>
+            <LayoutContainer>
+                <LayoutHeader></LayoutHeader>
+                <LayoutMain>Hello tab {tab}!</LayoutMain>
+                <LayoutFooter></LayoutFooter>
+            </LayoutContainer>
+            <LayoutSidebar></LayoutSidebar>
         </>
     );
 }

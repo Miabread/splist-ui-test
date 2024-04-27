@@ -1,15 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { LayoutContainer, LayoutFooter, LayoutHeader, LayoutMain } from '../-root/Layout';
 
-export const Route = createFileRoute('/client/')({
-    component: Index,
+export const Route = createFileRoute('/client/logs')({
+    component: Logs,
 });
 
-function Index() {
+function Logs() {
     return (
         <LayoutContainer>
             <LayoutHeader></LayoutHeader>
-            <LayoutMain>Hello /client/!</LayoutMain>
+            <LayoutMain>Hello /logs/!</LayoutMain>
             <LayoutFooter></LayoutFooter>
         </LayoutContainer>
     );
