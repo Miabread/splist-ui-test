@@ -1,6 +1,21 @@
 import classNames from 'classnames';
 import { PropsWithChildren } from 'react';
 
+interface ThreadSidebarProps extends PropsWithChildren {
+    title: string;
+}
+
+export function ThreadSidebar({ children, title }: ThreadSidebarProps) {
+    return (
+        <nav className="bg-slate-800 w-72 flex flex-col">
+            <header className="h-14 grid place-items-center">
+                <h1 className="text-2xl font-bold">{title}</h1>
+            </header>
+            <ul className="p-2 text-stone-300">{children}</ul>
+        </nav>
+    );
+}
+
 interface ThreadSidebarItemProps extends PropsWithChildren<JSX.IntrinsicElements['li']> {
     active?: boolean;
     icon?: React.ReactElement;
