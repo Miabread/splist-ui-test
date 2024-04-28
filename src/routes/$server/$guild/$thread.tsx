@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { GoHash } from 'react-icons/go';
-import { LayoutContainer, LayoutHeader, LayoutMain, LayoutFooter } from '../-root/Layout';
+import { LayoutContainer, LayoutHeader, LayoutMain, LayoutFooter } from '../../-root/Layout';
 
-export const Route = createFileRoute('/$server/$thread')({
+export const Route = createFileRoute('/$server/$guild/$thread')({
     component: Thread,
 });
 
