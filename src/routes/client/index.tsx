@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { LayoutContainer, LayoutFooter, LayoutHeader, LayoutMain } from '../-root/Layout';
-import { GoServer } from 'react-icons/go';
+import { GoBroadcast } from 'react-icons/go';
 
 export const Route = createFileRoute('/client/')({
     component: Index,
@@ -9,8 +9,8 @@ export const Route = createFileRoute('/client/')({
 function Index() {
     return (
         <LayoutContainer>
-            <LayoutHeader icon={<GoServer size={24} />} title="Servers" />
-            <LayoutMain>Hello /client/!</LayoutMain>
+            <LayoutHeader icon={<GoBroadcast size={24} />} title="Servers" />
+            <LayoutMain>Hello servers!</LayoutMain>
             <LayoutFooter></LayoutFooter>
         </LayoutContainer>
     );

@@ -1,5 +1,5 @@
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
-import { GoAlert, GoGear, GoServer } from 'react-icons/go';
+import { GoBroadcast, GoCodeSquare, GoGear } from 'react-icons/go';
 import { ThreadSidebar, ThreadSidebarItem } from './-root/ThreadSidebar';
 
 export const Route = createFileRoute('/client')({
@@ -12,14 +12,14 @@ function Client() {
             <ThreadSidebar title="Splist Client">
                 <Link to="/client/" activeOptions={{ exact: true }}>
                     {({ isActive }) => (
-                        <ThreadSidebarItem icon={<GoServer size={24} />} active={isActive}>
+                        <ThreadSidebarItem icon={<GoBroadcast size={24} />} active={isActive}>
                             Servers
                         </ThreadSidebarItem>
                     )}
                 </Link>
                 <Link to="/client/logs">
                     {({ isActive }) => (
-                        <ThreadSidebarItem icon={<GoAlert size={24} />} active={isActive}>
+                        <ThreadSidebarItem icon={<GoCodeSquare size={24} />} active={isActive}>
                             Logs
                         </ThreadSidebarItem>
                     )}

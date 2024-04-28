@@ -10,7 +10,7 @@ function Settings() {
     return (
         <LayoutContainer>
             <LayoutHeader icon={<GoGear size={24} />} title="Settings" />
-            <LayoutMain>Hello /settings/!</LayoutMain>
+            <LayoutMain>Hello settings!</LayoutMain>
             <LayoutFooter></LayoutFooter>
         </LayoutContainer>
     );
