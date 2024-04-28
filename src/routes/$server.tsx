@@ -29,9 +29,9 @@ function Server() {
                 <ThreadSidebarHr />
 
                 {[1, 2, 3, 4, 5].map((it) => (
-                    <Link to="/$server/$thread" params={{ server, thread: it.toString() }}>
+                    <Link to="/$server/$thread" key={it} params={{ server, thread: it.toString() }}>
                         {({ isActive }) => (
-                            <ThreadSidebarItem key={it} icon={<GoHash size={24} />} active={isActive}>
+                            <ThreadSidebarItem icon={<GoHash size={24} />} active={isActive}>
                                 Thread {it}
                             </ThreadSidebarItem>
                         )}

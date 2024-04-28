@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { PropsWithChildren } from 'react';
 import { useStore } from '../../state';
 import { ContextMenu, ContextMenuItem, useContextMenu } from '../../components/ContextMenu';
-import { GoArrowDown, GoArrowUp, GoDuplicate, GoPlus, GoX, GoXCircle } from 'react-icons/go';
+import { GoArrowDown, GoArrowUp, GoDuplicate, GoPlus, GoTelescope, GoX, GoXCircle } from 'react-icons/go';
 import classNames from 'classnames';
 
 export function TabSidebar() {
@@ -26,7 +26,9 @@ function HomeLink() {
 
     return (
         <Link to="/" {...parentProps}>
-            <TabSidebarItem active={childProps !== null}>Home</TabSidebarItem>
+            <TabSidebarItem active={childProps !== null}>
+                <GoTelescope size={24} />
+            </TabSidebarItem>
             <ContextMenu propsFromHook={childProps}>
                 <ContextMenuItem onClick={() => createNewTab()} icon={<GoPlus size={16} />}>
                     New tab
@@ -47,24 +49,26 @@ function TabLink({ link, index }: { link: string; index: number }) {
     const shiftTabDown = useStore((store) => store.shiftTabDown);
 
     return (
-        <Link to={link} {...parentProps}>
-            <TabSidebarItem active={childProps !== null}>
-                {link}
-                <ContextMenu propsFromHook={childProps}>
-                    <ContextMenuItem onClick={() => closeTab(index)} icon={<GoX size={16} />}>
-                        Close
-                    </ContextMenuItem>
-                    <ContextMenuItem onClick={() => duplicateTab(index)} icon={<GoDuplicate size={16} />}>
-                        Duplicate
-                    </ContextMenuItem>
-                    <ContextMenuItem onClick={() => shiftTabUp(index)} icon={<GoArrowUp size={16} />}>
-                        Shift up
-                    </ContextMenuItem>
-                    <ContextMenuItem onClick={() => shiftTabDown(index)} icon={<GoArrowDown size={16} />}>
-                        Shift down
-                    </ContextMenuItem>
-                </ContextMenu>
-            </TabSidebarItem>
+        <Link {...parentProps} to={link}>
+            {({ isActive }) => (
+                <TabSidebarItem active={isActive || childProps !== null}>
+                    {link}
+                    <ContextMenu propsFromHook={childProps}>
+                        <ContextMenuItem onClick={() => closeTab(index)} icon={<GoX size={16} />}>
+                            Close
+                        </ContextMenuItem>
+                        <ContextMenuItem onClick={() => duplicateTab(index)} icon={<GoDuplicate size={16} />}>
+                            Duplicate
+                        </ContextMenuItem>
+                        <ContextMenuItem onClick={() => shiftTabUp(index)} icon={<GoArrowUp size={16} />}>
+                            Shift up
+                        </ContextMenuItem>
+                        <ContextMenuItem onClick={() => shiftTabDown(index)} icon={<GoArrowDown size={16} />}>
+                            Shift down
+                        </ContextMenuItem>
+                    </ContextMenu>
+                </TabSidebarItem>
+            )}
         </Link>
     );
 }
@@ -79,8 +83,8 @@ function TabSidebarItem({ children, active }: PropsWithChildren<TabSidebarItemPr
             className={classNames(
                 'w-14 h-14 m-2 grid place-items-center',
                 'bg-orange-300 text-black font-bold text-lg',
-                'rounded-[1.75rem] hover:rounded-2xl transition-[border-radius] delay-75',
-                active && 'rounded-2xl',
+                'transition-[border-radius] delay-75',
+                active ? 'rounded-2xl' : 'rounded-[1.75rem] hover:rounded-2xl',
             )}
         >
             {children}
