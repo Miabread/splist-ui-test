@@ -1,5 +1,5 @@
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
-import { GoHash, GoPeople, GoStack } from 'react-icons/go';
+import { GoArrowLeft, GoHash, GoPeople, GoStack } from 'react-icons/go';
 import { ThreadSidebar, ThreadSidebarHr, ThreadSidebarItem } from '../-root/ThreadSidebar';
 
 export const Route = createFileRoute('/$server/$guild')({
@@ -11,6 +11,11 @@ function Guild() {
     return (
         <>
             <ThreadSidebar title={`Guild ${guild}`}>
+                <Link to="/$server" params={{ server }}>
+                    <ThreadSidebarItem icon={<GoArrowLeft size={24} />} active={false}>
+                        Server {server}
+                    </ThreadSidebarItem>
+                </Link>
                 <Link to="/$server/$guild/members" params={{ server, guild }}>
                     {({ isActive }) => (
                         <ThreadSidebarItem icon={<GoPeople size={24} />} active={isActive}>
