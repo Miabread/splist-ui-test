@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { GoHash } from 'react-icons/go';
-import { ThreadSidebar, ThreadSidebarItem } from './-root/ThreadSidebar';
+import { GoHash, GoPeople, GoStack } from 'react-icons/go';
+import { ThreadSidebar, ThreadSidebarHr, ThreadSidebarItem } from './-root/ThreadSidebar';
 import { LayoutContainer, LayoutFooter, LayoutHeader, LayoutMain, LayoutSidebar } from './-root/Layout';
 
 export const Route = createFileRoute('/$tab')({
@@ -12,6 +12,13 @@ function Tab() {
     return (
         <>
             <ThreadSidebar title={`Tab ${tab}`}>
+                <ThreadSidebarItem icon={<GoPeople size={24} />} active={false}>
+                    Members
+                </ThreadSidebarItem>
+                <ThreadSidebarItem icon={<GoStack size={24} />} active={false}>
+                    All Threads
+                </ThreadSidebarItem>
+                <ThreadSidebarHr />
                 {[1, 2, 3, 4, 5].map((it) => (
                     <ThreadSidebarItem key={it} icon={<GoHash size={24} />} active={false}>
                         Thread {it}

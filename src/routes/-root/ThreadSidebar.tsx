@@ -35,3 +35,7 @@ export function ThreadSidebarItem({ children, active, icon }: ThreadSidebarItemP
         </li>
     );
 }
+
+export function ThreadSidebarHr() {
+    return <hr className="border-stone-400 mt-2 mb-2" />;
+}
