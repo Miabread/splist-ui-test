@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { PropsWithChildren } from 'react';
-import { LayoutSidebar } from './Layout';
+import { LayoutSidebar, LayoutSidebarHeader } from './Layout';
 
 interface ThreadSidebarProps extends PropsWithChildren {
     title: string;
@@ -9,9 +9,9 @@ interface ThreadSidebarProps extends PropsWithChildren {
 export function ThreadSidebar({ children, title }: ThreadSidebarProps) {
     return (
         <LayoutSidebar>
-            <header className="h-12 flex items-center p-4 border-b-slate-900 border-solid border-b-2 flex-shrink-0">
+            <LayoutSidebarHeader>
                 <h1 className="font-bold">{title}</h1>
-            </header>
+            </LayoutSidebarHeader>
             <ul className="p-1.5 text-stone-300">{children}</ul>
         </LayoutSidebar>
     );

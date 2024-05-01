@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { ThreadSidebar, ThreadSidebarHr, ThreadSidebarItem } from '../-root/ThreadSidebar';
 import { LayoutContainer, LayoutHeader, LayoutMain } from '../-root/Layout';
-import { GoHome, GoOrganization } from 'react-icons/go';
+import { GoHome, GoTag } from 'react-icons/go';
 
 export const Route = createFileRoute('/$server/')({
     component: Server,
@@ -12,8 +12,8 @@ function Server() {
     return (
         <>
             <ThreadSidebar title={`Server ${server}`}>
-                <ThreadSidebarItem icon={<GoOrganization size={24} />} active>
-                    Guilds
+                <ThreadSidebarItem icon={<GoTag size={24} />} active>
+                    Catalog
                 </ThreadSidebarItem>
                 <ThreadSidebarHr />
                 {[1, 2, 3, 4, 5].map((it) => (
@@ -25,7 +25,7 @@ function Server() {
                 ))}
             </ThreadSidebar>
             <LayoutContainer>
-                <LayoutHeader icon={<GoOrganization size={24} />} title={server} />
+                <LayoutHeader icon={<GoTag size={24} />} title={'Catalog'} />
                 <LayoutMain>Hello server {server}!</LayoutMain>
             </LayoutContainer>
         </>
