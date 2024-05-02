@@ -1,13 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import {
-    LayoutContainer,
-    LayoutFooter,
-    LayoutHeader,
-    LayoutMain,
-    LayoutSidebar,
-    LayoutSidebarHeader,
-} from '../-root/Layout';
-import { GoAlert, GoBroadcast, GoMoon, GoPulse, GoXCircle } from 'react-icons/go';
+import { LayoutContainer, LayoutFooter, LayoutHeader, LayoutMain } from '../-root/Layout';
+import { GoAlert, GoMoon, GoPulse, GoTelescope, GoXCircle } from 'react-icons/go';
 import { Avatar } from '../../components/Avatar';
 
 export const Route = createFileRoute('/client/')({
@@ -18,7 +11,7 @@ function Index() {
     return (
         <>
             <LayoutContainer>
-                <LayoutHeader icon={<GoBroadcast size={24} />} title="Servers" />
+                <LayoutHeader icon={<GoTelescope size={24} />} title="Overview" />
                 <LayoutMain>
                     <main className="mt-2 w-4/5 m-auto">
                         <section>
@@ -37,9 +30,6 @@ function Index() {
                 </LayoutMain>
                 <LayoutFooter></LayoutFooter>
             </LayoutContainer>
-            <LayoutSidebar>
-                <LayoutSidebarHeader />
-            </LayoutSidebar>
         </>
     );
 }
@@ -69,15 +59,18 @@ const ConnectedTable = () => {
 const ConnectedRow = () => {
     return (
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
-            <td className="p-2 text-white">
+            <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar avatar="orange" />
-                    <span className="pl-2 flex">Test Server</span>
+                    <Avatar color="orange" />
+                    <span className="pl-2 flex flex-col">
+                        <span className="text-white">Test Server</span>
+                        <span className="text-sm">@exampleremote</span>
+                    </span>
                 </div>
             </td>
             <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar avatar="blue" status="online" />
+                    <Avatar color="blue" status="online" />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">Foobar</span>
                         <span className="text-sm">Playing your mom</span>
@@ -121,15 +114,18 @@ const SavedTable = () => {
 const SavedRow = () => {
     return (
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
-            <td className="p-2 text-white">
+            <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar avatar="orange" />
-                    <span className="pl-2 flex">Test Server</span>
+                    <Avatar color="orange" />
+                    <span className="pl-2 flex flex-col">
+                        <span className="text-white">Test Server</span>
+                        <span className="text-sm">@exampleremote</span>
+                    </span>
                 </div>
             </td>
             <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar avatar="blue" />
+                    <Avatar color="blue" />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">Foobar</span>
                         <span className="text-sm">@foobar</span>

@@ -19,7 +19,7 @@ function Server() {
                 <ThreadSidebarHr />
                 {[1, 2, 3, 4, 5].map((it) => (
                     <Link to="/$server/$guild" key={it} params={{ server, guild: it.toString() }}>
-                        <ThreadSidebarItem icon={<Avatar small avatar="pink" />} active={false}>
+                        <ThreadSidebarItem icon={<Avatar sidebar color="pink" />} active={false}>
                             Guild {it}
                         </ThreadSidebarItem>
                     </Link>

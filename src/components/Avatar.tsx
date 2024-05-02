@@ -16,18 +16,21 @@ const avatarColors = {
 
 interface AvatarProps {
     status?: keyof typeof statusColors;
-    avatar: keyof typeof avatarColors;
-    small?: boolean;
+    color: keyof typeof avatarColors;
+    sidebar?: boolean;
 }
 
-export function Avatar({ status, avatar, small }: AvatarProps) {
+export function Avatar({ status, color, sidebar }: AvatarProps) {
     return (
-        <div className={classNames('relative rounded-full', avatarColors[avatar], small ? 'w-7 h-7' : 'w-10 h-10')}>
+        <div className={classNames('relative rounded-full', avatarColors[color], sidebar ? 'w-7 h-7' : 'w-10 h-10')}>
             {status && (
                 <span
                     className={classNames(
-                        'absolute top-6 left-6 rounded-full w-[1.10rem] h-[1.15rem] border-slate-600 border-[3px]',
+                        'absolute rounded-full',
                         statusColors[status],
+                        sidebar
+                            ? 'top-[1.05rem] left-[1.05rem] w-[0.75rem] h-[0.75rem] border-[2px] border-slate-800'
+                            : 'top-6 left-6 w-[1.10rem] h-[1.15rem] border-[3px] border-slate-600',
                     )}
                 />
             )}
