@@ -8,6 +8,7 @@ import {
     LayoutSidebarHeader,
 } from '../-root/Layout';
 import { GoAlert, GoBroadcast, GoMoon, GoPulse, GoXCircle } from 'react-icons/go';
+import { Avatar } from '../../components/Avatar';
 
 export const Route = createFileRoute('/client/')({
     component: Index,
@@ -70,15 +71,13 @@ const ConnectedRow = () => {
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2 text-white">
                 <div className="flex items-center">
-                    <div className="bg-orange-300 w-10 h-10 rounded-full" />
+                    <Avatar avatar="orange" />
                     <span className="pl-2 flex">Test Server</span>
                 </div>
             </td>
             <td className="p-2">
                 <div className="flex items-center">
-                    <div className="relative bg-blue-300 w-10 h-10 rounded-full">
-                        <span className="absolute top-6 left-6 bg-green-600 rounded-full w-[1.10rem] h-[1.15rem] border-slate-600 border-[3px]" />
-                    </div>
+                    <Avatar avatar="blue" status="online" />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">Foobar</span>
                         <span className="text-sm">Playing your mom</span>
@@ -124,13 +123,13 @@ const SavedRow = () => {
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2 text-white">
                 <div className="flex items-center">
-                    <div className="bg-orange-300 w-10 h-10 rounded-full" />
+                    <Avatar avatar="orange" />
                     <span className="pl-2 flex">Test Server</span>
                 </div>
             </td>
             <td className="p-2">
                 <div className="flex items-center">
-                    <div className="bg-blue-300 w-10 h-10 rounded-full" />
+                    <Avatar avatar="blue" />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">Foobar</span>
                         <span className="text-sm">@foobar</span>
