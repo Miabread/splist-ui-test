@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { PropsWithChildren } from 'react';
-import { useStore } from '../../state';
-import { ContextMenu, ContextMenuItem, useContextMenu } from '../../components/ContextMenu';
+import { useStore } from '../state';
+import { ContextMenu, ContextMenuItem, useContextMenu } from './ContextMenu';
 import { GoArrowDown, GoArrowUp, GoDuplicate, GoPlus, GoTelescope, GoX, GoXCircle } from 'react-icons/go';
 import classNames from 'classnames';
 
