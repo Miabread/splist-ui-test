@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import { PropsWithChildren } from 'react';
 import { LayoutSidebar, LayoutSidebarHeader } from './Layout';
 
-interface ThreadSidebarProps extends PropsWithChildren {
+interface LeftSidebarProps extends PropsWithChildren {
     title: string;
 }
 
-export function ThreadSidebar({ children, title }: ThreadSidebarProps) {
+export function LeftSidebar({ children, title }: LeftSidebarProps) {
     return (
         <LayoutSidebar>
             <LayoutSidebarHeader>
@@ -17,12 +17,12 @@ export function ThreadSidebar({ children, title }: ThreadSidebarProps) {
     );
 }
 
-interface ThreadSidebarItemProps extends PropsWithChildren<JSX.IntrinsicElements['li']> {
+interface LeftSidebarItemProps extends PropsWithChildren<JSX.IntrinsicElements['li']> {
     active: boolean;
     icon: React.ReactElement;
 }
 
-export function ThreadSidebarItem({ children, active, icon }: ThreadSidebarItemProps) {
+export function LeftSidebarItem({ children, active, icon }: LeftSidebarItemProps) {
     return (
         <li
             className={classNames(
@@ -36,6 +36,6 @@ export function ThreadSidebarItem({ children, active, icon }: ThreadSidebarItemP
     );
 }
 
-export function ThreadSidebarHr() {
+export function LeftSidebarHr() {
     return <hr className="border-stone-400 mt-2 mb-2" />;
 }
