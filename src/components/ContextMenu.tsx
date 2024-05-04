@@ -39,7 +39,7 @@ interface Props {
 export function ContextMenu({ propsFromHook, children }: PropsWithChildren<Props>) {
     if (!propsFromHook) return null;
     return (
-        <ul {...propsFromHook} className="bg-slate-900 text-stone-300 p-2 rounded text-base font-normal shadow">
+        <ul {...propsFromHook} className="bg-slate-900 text-stone-300 p-2 rounded text-base font-normal shadow z-50">
             {children}
         </ul>
     );
