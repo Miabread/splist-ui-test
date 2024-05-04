@@ -15,7 +15,7 @@ function Index() {
             <MainSidebar homeLink="/" logsLink="/logs" settingsLink="/settings" clientLink="/" remoteLink="/$remote" />
             <LayoutContainer>
                 <LayoutHeader icon={<GoHome size={24} />} title="Home" />
-                <LayoutMain className="px-16">
+                <LayoutMain className="px-5 flex justify-between gap-5">
                     <Table
                         title={
                             <>
@@ -54,7 +54,7 @@ interface TableProps extends PropsWithChildren {
 
 function Table({ title, headings, children }: TableProps) {
     return (
-        <section className="mt-4">
+        <section className="mt-4 w-full">
             <h1 className="flex gap-3 text-lg font-bold p-4 pb-3 pl-0">{title}</h1>
             <div className="w-full bg-slate-600 rounded p-5 pt-1">
                 <table className="w-full">
