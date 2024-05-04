@@ -42,7 +42,6 @@ function Index() {
                         <SavedRow />
                     </Table>
                 </LayoutMain>
-                <LayoutFooter></LayoutFooter>
             </LayoutContainer>
         </>
     );
