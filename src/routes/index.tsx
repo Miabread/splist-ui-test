@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { MainSidebar } from '../components/MainSidebar';
-import { GoPulse, GoMoon, GoHome, GoXCircle, GoAlert } from 'react-icons/go';
-import { LayoutContainer, LayoutHeader, LayoutMain, LayoutFooter } from '../components/Layout';
+import { LayoutContainer, LayoutHeader, LayoutMain } from '../components/Layout';
 import { Avatar } from '../components/Avatar';
 import { PropsWithChildren, ReactElement } from 'react';
+import { icons } from '../components/Icons';
 
 export const Route = createFileRoute('/')({
     component: Index,
@@ -14,12 +14,12 @@ function Index() {
         <>
             <MainSidebar homeLink="/" logsLink="/logs" settingsLink="/settings" clientLink="/" remoteLink="/$remote" />
             <LayoutContainer>
-                <LayoutHeader icon={<GoHome size={24} />} title="Home" />
+                <LayoutHeader icon={<icons.Home size={24} />} title="Home" />
                 <LayoutMain className="px-5 flex justify-between gap-5">
                     <Table
                         title={
                             <>
-                                <GoPulse size={24} /> Connected
+                                <icons.RemotesConnected size={24} /> Connected
                             </>
                         }
                         headings={['Remote', 'Status', 'Logs', 'Ping']}
@@ -32,7 +32,7 @@ function Index() {
                     <Table
                         title={
                             <>
-                                <GoMoon size={24} /> Saved
+                                <icons.RemotesSaved size={24} /> Saved
                             </>
                         }
                         headings={['Remote', 'Account', 'Server', 'Last Connected']}
@@ -97,9 +97,9 @@ function ConnectedRow() {
             </td>
             <td className="p-2">
                 <span className="flex gap-1 items-center">
-                    <GoXCircle /> 0
+                    <icons.Errors /> 0
                     <span className="w-2" />
-                    <GoAlert /> 0
+                    <icons.Warnings /> 0
                 </span>
             </td>
             <td className="p-2">120 ms</td>

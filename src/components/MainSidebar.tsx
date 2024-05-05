@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
-import { GoHome, GoCodeSquare, GoGear, GoTelescope } from 'react-icons/go';
 import { Avatar } from './Avatar';
 import { LeftSidebar, LeftSidebarItem, LeftSidebarHr } from './LeftSidebar';
+import { icons } from './Icons';
 
 interface MainSidebarProps {
     remote?: string;
@@ -17,21 +17,21 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
         <LeftSidebar title={remote ? `Remote ${remote}` : 'Splist Client'}>
             <Link to={links.homeLink} params={{ remote }} activeOptions={{ exact: true }}>
                 {({ isActive }) => (
-                    <LeftSidebarItem icon={<GoHome size={24} />} active={isActive}>
+                    <LeftSidebarItem icon={<icons.Home size={24} />} active={isActive}>
                         Home
                     </LeftSidebarItem>
                 )}
             </Link>
             <Link to={links.logsLink} params={{ remote }}>
                 {({ isActive }) => (
-                    <LeftSidebarItem icon={<GoCodeSquare size={24} />} active={isActive}>
+                    <LeftSidebarItem icon={<icons.Logs size={24} />} active={isActive}>
                         Logs
                     </LeftSidebarItem>
                 )}
             </Link>
             <Link to={links.settingsLink} params={{ remote }}>
                 {({ isActive }) => (
-                    <LeftSidebarItem icon={<GoGear size={24} />} active={isActive}>
+                    <LeftSidebarItem icon={<icons.Settings size={24} />} active={isActive}>
                         Settings
                     </LeftSidebarItem>
                 )}
@@ -39,7 +39,7 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
             <LeftSidebarHr />
             <Link to={links.clientLink} activeOptions={{ exact: true }}>
                 {({ isActive }) => (
-                    <LeftSidebarItem icon={<GoTelescope size={24} />} active={isActive}>
+                    <LeftSidebarItem icon={<icons.SplistClient size={24} />} active={isActive}>
                         Splist Client
                     </LeftSidebarItem>
                 )}

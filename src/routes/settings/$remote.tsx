@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { MainSidebar } from '../../components/MainSidebar';
-import { GoGear } from 'react-icons/go';
 import { LayoutContainer, LayoutHeader, LayoutMain } from '../../components/Layout';
+import { icons } from '../../components/Icons';
 
 export const Route = createFileRoute('/settings/$remote')({
     component: SettingsRemote,
@@ -21,7 +21,7 @@ function SettingsRemote() {
                 remoteLink="/settings/$remote"
             />
             <LayoutContainer>
-                <LayoutHeader icon={<GoGear size={24} />} title="Settings" />
+                <LayoutHeader icon={<icons.Settings size={24} />} title="Settings" />
                 <LayoutMain></LayoutMain>
             </LayoutContainer>
         </>
