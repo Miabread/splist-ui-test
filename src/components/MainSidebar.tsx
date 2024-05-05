@@ -14,7 +14,7 @@ interface MainSidebarProps {
 
 export function MainSidebar({ remote, ...links }: MainSidebarProps) {
     return (
-        <LeftSidebar title={remote ? `Remote ${remote}` : 'Splist Client'}>
+        <LeftSidebar title={remote ? `@${remote}` : 'Splist Client'}>
             <Link to={links.homeLink} params={{ remote }} activeOptions={{ exact: true }}>
                 {({ isActive }) => (
                     <LeftSidebarItem icon={<icons.Home size={24} />} active={isActive}>
@@ -45,7 +45,7 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
                 )}
             </Link>
             {[1, 2, 3, 4, 5].map((it) => (
-                <Link key={it} to={links.remoteLink} params={{ remote: it.toString() }}>
+                <Link key={it} to={links.remoteLink} params={{ remote: `remote${it}` }}>
                     {({ isActive }) => (
                         <LeftSidebarItem icon={<Avatar sidebar color="orange" />} active={isActive}>
                             <span className="flex flex-col">
