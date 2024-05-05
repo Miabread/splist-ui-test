@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Avatar } from './Avatar';
-import { LeftSidebar, LeftSidebarItem, LeftSidebarHr } from './LeftSidebar';
+import { LeftSidebar, LeftSidebarHr, LeftSidebarItem } from './LeftSidebar';
 import { icons } from './Icons';
 import { useStore } from '../state';
 
@@ -40,7 +40,8 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
                     </LeftSidebarItem>
                 )}
             </Link>
-            <LeftSidebarHr />
+
+            <LeftSidebarHr title="Connected" />
             <Link to={links.clientLink} activeOptions={{ exact: true }}>
                 {({ isActive }) => (
                     <LeftSidebarItem icon={<icons.SplistClient size={24} />} active={isActive}>
@@ -56,14 +57,15 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
                             active={isActive}
                         >
                             <span className="flex flex-col">
-                                <span className="text-white text-sm">{savedRemotes[handle].name}</span>
+                                <span className="text-sm">{savedRemotes[handle].name}</span>
                                 <span className="text-xs">{remote.statusMessage}</span>
                             </span>
                         </LeftSidebarItem>
                     )}
                 </Link>
             ))}
-            <LeftSidebarHr />
+
+            <LeftSidebarHr title="Saved" />
             {Object.entries(savedRemotes)
                 .filter(([handle]) => !Object.hasOwn(connectedRemotes, handle))
                 .map(([handle, remote]) => (
@@ -74,7 +76,7 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
                                 active={isActive}
                             >
                                 <span className="flex flex-col">
-                                    <span className="text-white text-sm">{savedRemotes[handle].name}</span>
+                                    <span className="text-sm">{savedRemotes[handle].name}</span>
                                     <span className="text-xs">{remote.lastStatusMessage}</span>
                                 </span>
                             </LeftSidebarItem>

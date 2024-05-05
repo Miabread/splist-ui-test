@@ -36,6 +36,14 @@ export function LeftSidebarItem({ children, active, icon }: LeftSidebarItemProps
     );
 }
 
-export function LeftSidebarHr() {
-    return <hr className="border-stone-400 mt-2 mb-2" />;
+export function LeftSidebarHr({ title }: { title: string }) {
+    if (!title) return <hr className="border-stone-400 mt-5 mx-2" />;
+
+    return (
+        <div className="flex items-center mt-5 mx-2">
+            <hr className="border-stone-400 border-b-1 w-4 flex-shrink-0" />
+            <h2 className="text-stone-400 mx-2 text-sm font-bold">{title}</h2>
+            <hr className="border-stone-400 border-b-1 w-full" />
+        </div>
+    );
 }
