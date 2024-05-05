@@ -45,9 +45,9 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
                 )}
             </Link>
             {[1, 2, 3, 4, 5].map((it) => (
-                <Link to={links.remoteLink} params={{ remote: it.toString() }}>
+                <Link key={it} to={links.remoteLink} params={{ remote: it.toString() }}>
                     {({ isActive }) => (
-                        <LeftSidebarItem key={it} icon={<Avatar sidebar color="orange" />} active={isActive}>
+                        <LeftSidebarItem icon={<Avatar sidebar color="orange" />} active={isActive}>
                             <span className="flex flex-col">
                                 <span className="text-white text-sm">Remote {it}</span>
                                 <span className="text-xs">@remote{it}</span>
