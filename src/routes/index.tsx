@@ -22,7 +22,7 @@ function Index() {
                                 <icons.RemotesConnected size={24} /> Connected
                             </>
                         }
-                        headings={['Remote', 'Status', 'Logs', 'Ping']}
+                        headings={['Remote', 'Status', 'Health', 'Connected']}
                     >
                         <ConnectedRow />
                         <ConnectedRow />
@@ -35,7 +35,7 @@ function Index() {
                                 <icons.RemotesSaved size={24} /> Saved
                             </>
                         }
-                        headings={['Remote', 'Account', 'Server', 'Last Connected']}
+                        headings={['Remote', 'Account', 'Server', 'Disconnected']}
                     >
                         <SavedRow />
                         <SavedRow />
@@ -96,13 +96,19 @@ function ConnectedRow() {
                 </div>
             </td>
             <td className="p-2">
-                <span className="flex gap-1 items-center">
-                    <icons.Errors /> 0
-                    <span className="w-2" />
-                    <icons.Warnings /> 0
+                <span className="flex gap-3 items-center">
+                    <span className="flex gap-1 items-center">
+                        <icons.Errors /> 0
+                    </span>
+                    <span className="flex gap-1 items-center">
+                        <icons.Warnings /> 0
+                    </span>
+                    <span className="flex gap-1 items-center">
+                        <icons.Ping /> 120ms
+                    </span>
                 </span>
             </td>
-            <td className="p-2">120 ms</td>
+            <td className="p-2">30 minutes ago</td>
         </tr>
     );
 }
@@ -129,7 +135,7 @@ function SavedRow() {
                 </div>
             </td>
             <td className="p-2">https://connect.splist.org</td>
-            <td className="p-2">10/10/2010</td>
+            <td className="p-2">2 days ago</td>
         </tr>
     );
 }
