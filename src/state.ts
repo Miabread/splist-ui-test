@@ -5,7 +5,7 @@ export interface State {
     savedRemotes: {
         [handle: string]: {
             lastStatus: Status;
-            lastStatusMessage: string;
+            lastStatusMessage?: string;
             name: string;
             handle: string;
             address: string;
@@ -17,7 +17,7 @@ export interface State {
     connectedRemotes: {
         [handle: string]: {
             status: Status;
-            statusMessage: string;
+            statusMessage?: string;
             userStatus: Status;
             userStatusMessage: string;
             errors: number;
@@ -32,7 +32,6 @@ export const useStore = create<State>()(() => ({
     savedRemotes: {
         splist_main: {
             lastStatus: 'offline',
-            lastStatusMessage: 'Disconnected',
             name: 'Splist',
             handle: 'splist_main',
             address: 'https://connect.splist.gay',
@@ -52,7 +51,6 @@ export const useStore = create<State>()(() => ({
         },
         disilla: {
             lastStatus: 'offline',
-            lastStatusMessage: 'Disconnected',
             name: 'Disilla',
             handle: 'disilla',
             address: 'https://splist.disilla.org',
@@ -62,7 +60,6 @@ export const useStore = create<State>()(() => ({
         },
         example1: {
             lastStatus: 'offline',
-            lastStatusMessage: 'Disconnected',
             name: 'Foocord',
             handle: 'example1',
             address: 'https://example.com',
@@ -72,7 +69,6 @@ export const useStore = create<State>()(() => ({
         },
         example2: {
             lastStatus: 'offline',
-            lastStatusMessage: 'Disconnected',
             name: 'Barcord',
             handle: 'example2',
             address: 'https://example.com',
@@ -94,7 +90,6 @@ export const useStore = create<State>()(() => ({
     connectedRemotes: {
         example1: {
             status: 'online',
-            statusMessage: 'Connected',
             userStatus: 'online',
             userStatusMessage: 'Hello world!',
             errors: 0,
