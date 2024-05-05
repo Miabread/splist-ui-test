@@ -15,7 +15,7 @@ function Index() {
             <MainSidebar homeLink="/" logsLink="/logs" settingsLink="/settings" clientLink="/" remoteLink="/$remote" />
             <LayoutContainer>
                 <LayoutHeader icon={<icons.Home size={24} />} title="Home" />
-                <LayoutMain className="px-5 flex justify-between gap-5">
+                <LayoutMain className="px-16">
                     <Table
                         title={
                             <>

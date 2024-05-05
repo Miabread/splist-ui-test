@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
-import { GoTelescope } from 'react-icons/go';
 import classNames from 'classnames';
+import { icons } from './Icons';
 
 export function TabSidebar() {
     return (
         <nav className="flex flex-col bg-slate-900 h-screen items-center">
             <TabSidebarItem active>
-                <GoTelescope size={24} />
+                <icons.SplistClient size={24} />
             </TabSidebarItem>
             <hr className="border-white w-2/4" />
         </nav>
