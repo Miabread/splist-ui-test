@@ -86,19 +86,19 @@ function ConnectedRow(props: State['savedRemotes'][number] & State['connectedRem
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar color="orange" />
+                    <Avatar color="orange" status={props.status} />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">{props.name}</span>
-                        <span className="text-sm">@{props.handle}</span>
+                        <span className="text-sm">{props.statusMessage}</span>
                     </span>
                 </div>
             </td>
             <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar color="blue" status="online" />
+                    <Avatar color="blue" status={props.userStatus} />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">{props.username}</span>
-                        <span className="text-sm">{props.userStatus}</span>
+                        <span className="text-sm">{props.userStatusMessage}</span>
                     </span>
                 </div>
             </td>
@@ -127,10 +127,10 @@ function SavedRow(props: State['savedRemotes'][number]) {
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2">
                 <div className="flex items-center">
-                    <Avatar color="orange" />
+                    <Avatar color="orange" status={props.lastStatus} />
                     <span className="pl-2 flex flex-col">
                         <span className="text-white">{props.name}</span>
-                        <span className="text-sm">@{props.handle}</span>
+                        <span className="text-sm">{props.lastStatusMessage}</span>
                     </span>
                 </div>
             </td>

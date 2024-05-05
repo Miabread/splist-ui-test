@@ -1,8 +1,11 @@
 import { create } from 'zustand';
+import { Status } from './components/Avatar';
 
 export interface State {
     savedRemotes: {
         [handle: string]: {
+            lastStatus: Status;
+            lastStatusMessage: string;
             name: string;
             handle: string;
             address: string;
@@ -13,7 +16,10 @@ export interface State {
     };
     connectedRemotes: {
         [handle: string]: {
-            userStatus: string;
+            status: Status;
+            statusMessage: string;
+            userStatus: Status;
+            userStatusMessage: string;
             errors: number;
             warnings: number;
             ping: number;
@@ -25,6 +31,8 @@ export interface State {
 export const useStore = create<State>()(() => ({
     savedRemotes: {
         splist_main: {
+            lastStatus: 'offline',
+            lastStatusMessage: 'Disconnected',
             name: 'Splist',
             handle: 'splist_main',
             address: 'https://connect.splist.gay',
@@ -33,6 +41,8 @@ export const useStore = create<State>()(() => ({
             disconnected: new Date(Date.now() - 120 * 60000),
         },
         splist_alt: {
+            lastStatus: 'busy',
+            lastStatusMessage: 'Fatal error',
             name: 'Splist Alt',
             handle: 'splist_alt',
             address: 'https://connect.splist.gay',
@@ -41,6 +51,8 @@ export const useStore = create<State>()(() => ({
             disconnected: new Date(Date.now() - 30 * 60000),
         },
         disilla: {
+            lastStatus: 'offline',
+            lastStatusMessage: 'Disconnected',
             name: 'Disilla',
             handle: 'disilla',
             address: 'https://splist.disilla.org',
@@ -49,7 +61,9 @@ export const useStore = create<State>()(() => ({
             disconnected: new Date(Date.now() - 2400 * 60000),
         },
         example1: {
-            name: 'Foo',
+            lastStatus: 'offline',
+            lastStatusMessage: 'Disconnected',
+            name: 'Foocord',
             handle: 'example1',
             address: 'https://example.com',
             username: 'Testing 1',
@@ -57,7 +71,9 @@ export const useStore = create<State>()(() => ({
             disconnected: new Date(Date.now() - 2 * 60000),
         },
         example2: {
-            name: 'Bar',
+            lastStatus: 'offline',
+            lastStatusMessage: 'Disconnected',
+            name: 'Barcord',
             handle: 'example2',
             address: 'https://example.com',
             username: 'Testing 2',
@@ -65,7 +81,9 @@ export const useStore = create<State>()(() => ({
             disconnected: new Date(Date.now() - 2 * 60000),
         },
         example3: {
-            name: 'Baz',
+            lastStatus: 'offline',
+            lastStatusMessage: 'Closed by user',
+            name: 'Bazcord',
             handle: 'example3',
             address: 'https://example.com',
             username: 'Testing 3',
@@ -75,22 +93,31 @@ export const useStore = create<State>()(() => ({
     },
     connectedRemotes: {
         example1: {
-            userStatus: 'Status message',
-            errors: 2,
+            status: 'online',
+            statusMessage: 'Connected',
+            userStatus: 'online',
+            userStatusMessage: 'Hello world!',
+            errors: 0,
             warnings: 0,
             ping: 73,
             connected: new Date(Date.now() - 2 * 60000),
         },
         example2: {
-            userStatus: 'Status message',
+            status: 'away',
+            statusMessage: 'Recent warnings',
+            userStatus: 'open',
+            userStatusMessage: 'Looking to play',
             errors: 0,
             warnings: 10,
             ping: 100,
             connected: new Date(Date.now() - 5 * 60000),
         },
         example3: {
-            userStatus: 'Status message',
-            errors: 0,
+            status: 'busy',
+            statusMessage: 'Websocket disconnected',
+            userStatus: 'offline',
+            userStatusMessage: 'i <3 my internet',
+            errors: 2,
             warnings: 0,
             ping: 120,
             connected: new Date(Date.now() - 10 * 60000),

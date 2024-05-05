@@ -14,6 +14,8 @@ const avatarColors = {
     pink: 'bg-pink-300',
 };
 
+export type Status = keyof typeof statusColors;
+
 interface AvatarProps {
     status?: keyof typeof statusColors;
     color: keyof typeof avatarColors;
