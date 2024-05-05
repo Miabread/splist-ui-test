@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { Avatar } from './Avatar';
 import { LeftSidebar, LeftSidebarItem, LeftSidebarHr } from './LeftSidebar';
 import { icons } from './Icons';
+import { useStore } from '../state';
 
 interface MainSidebarProps {
     remote?: string;
@@ -13,8 +14,11 @@ interface MainSidebarProps {
 }
 
 export function MainSidebar({ remote, ...links }: MainSidebarProps) {
+    const savedRemotes = useStore((store) => store.savedRemotes);
+    const connectedRemotes = useStore((store) => store.connectedRemotes);
+
     return (
-        <LeftSidebar title={remote ? `@${remote}` : 'Splist Client'}>
+        <LeftSidebar title={remote ? savedRemotes[remote].name : 'Splist Client'}>
             <Link to={links.homeLink} params={{ remote }} activeOptions={{ exact: true }}>
                 {({ isActive }) => (
                     <LeftSidebarItem icon={<icons.Home size={24} />} active={isActive}>
@@ -44,18 +48,39 @@ export function MainSidebar({ remote, ...links }: MainSidebarProps) {
                     </LeftSidebarItem>
                 )}
             </Link>
-            {[1, 2, 3, 4, 5].map((it) => (
-                <Link key={it} to={links.remoteLink} params={{ remote: `remote${it}` }}>
+            {Object.entries(connectedRemotes).map(([handle, remote]) => (
+                <Link key={handle} to={links.remoteLink} params={{ remote: handle }}>
                     {({ isActive }) => (
-                        <LeftSidebarItem icon={<Avatar sidebar color="orange" />} active={isActive}>
+                        <LeftSidebarItem
+                            icon={<Avatar sidebar color="orange" status={remote.status} />}
+                            active={isActive}
+                        >
                             <span className="flex flex-col">
-                                <span className="text-white text-sm">Remote {it}</span>
-                                <span className="text-xs">@remote{it}</span>
+                                <span className="text-white text-sm">{savedRemotes[handle].name}</span>
+                                <span className="text-xs">{remote.statusMessage}</span>
                             </span>
                         </LeftSidebarItem>
                     )}
                 </Link>
             ))}
+            <LeftSidebarHr />
+            {Object.entries(savedRemotes)
+                .filter(([handle]) => !Object.hasOwn(connectedRemotes, handle))
+                .map(([handle, remote]) => (
+                    <Link key={handle} to={links.remoteLink} params={{ remote: handle }}>
+                        {({ isActive }) => (
+                            <LeftSidebarItem
+                                icon={<Avatar sidebar color="orange" status={remote.lastStatus} />}
+                                active={isActive}
+                            >
+                                <span className="flex flex-col">
+                                    <span className="text-white text-sm">{savedRemotes[handle].name}</span>
+                                    <span className="text-xs">{remote.lastStatusMessage}</span>
+                                </span>
+                            </LeftSidebarItem>
+                        )}
+                    </Link>
+                ))}
         </LeftSidebar>
     );
 }
