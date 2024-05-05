@@ -4,12 +4,17 @@ import { LayoutContainer, LayoutHeader, LayoutMain } from '../components/Layout'
 import { Avatar } from '../components/Avatar';
 import { PropsWithChildren, ReactElement } from 'react';
 import { icons } from '../components/Icons';
+import { State, useStore } from '../state';
+import { TimeSince } from '../components/TimeSince';
 
 export const Route = createFileRoute('/')({
     component: Index,
 });
 
 function Index() {
+    const savedRemotes = useStore((store) => store.savedRemotes);
+    const connectedRemotes = useStore((store) => store.connectedRemotes);
+
     return (
         <>
             <MainSidebar homeLink="/" logsLink="/logs" settingsLink="/settings" clientLink="/" remoteLink="/$remote" />
@@ -24,9 +29,9 @@ function Index() {
                         }
                         headings={['Remote', 'Status', 'Health', 'Connected']}
                     >
-                        <ConnectedRow />
-                        <ConnectedRow />
-                        <ConnectedRow />
+                        {Object.entries(connectedRemotes).map(([handle, remote]) => (
+                            <ConnectedRow {...remote} {...savedRemotes[handle]} key={handle} />
+                        ))}
                     </Table>
 
                     <Table
@@ -37,9 +42,11 @@ function Index() {
                         }
                         headings={['Remote', 'Account', 'Server', 'Disconnected']}
                     >
-                        <SavedRow />
-                        <SavedRow />
-                        <SavedRow />
+                        {Object.entries(savedRemotes)
+                            .filter(([handle]) => !Object.hasOwn(connectedRemotes, handle))
+                            .map(([handle, remote]) => (
+                                <SavedRow {...remote} key={handle} />
+                            ))}
                     </Table>
                 </LayoutMain>
             </LayoutContainer>
@@ -74,15 +81,15 @@ function Table({ title, headings, children }: TableProps) {
     );
 }
 
-function ConnectedRow() {
+function ConnectedRow(props: State['savedRemotes'][number] & State['connectedRemotes'][number]) {
     return (
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2">
                 <div className="flex items-center">
                     <Avatar color="orange" />
                     <span className="pl-2 flex flex-col">
-                        <span className="text-white">Example Remote</span>
-                        <span className="text-sm">@exampleremote</span>
+                        <span className="text-white">{props.name}</span>
+                        <span className="text-sm">@{props.handle}</span>
                     </span>
                 </div>
             </td>
@@ -90,38 +97,40 @@ function ConnectedRow() {
                 <div className="flex items-center">
                     <Avatar color="blue" status="online" />
                     <span className="pl-2 flex flex-col">
-                        <span className="text-white">Foobar</span>
-                        <span className="text-sm">Playing your mom</span>
+                        <span className="text-white">{props.username}</span>
+                        <span className="text-sm">{props.userStatus}</span>
                     </span>
                 </div>
             </td>
             <td className="p-2">
                 <span className="flex gap-3 items-center">
                     <span className="flex gap-1 items-center">
-                        <icons.Errors /> 0
+                        <icons.Errors /> {props.errors}
                     </span>
                     <span className="flex gap-1 items-center">
-                        <icons.Warnings /> 0
+                        <icons.Warnings /> {props.warnings}
                     </span>
                     <span className="flex gap-1 items-center">
-                        <icons.Ping /> 120ms
+                        <icons.Ping /> {props.ping}ms
                     </span>
                 </span>
             </td>
-            <td className="p-2">30 minutes ago</td>
+            <td className="p-2">
+                <TimeSince date={props.connected} />
+            </td>
         </tr>
     );
 }
 
-function SavedRow() {
+function SavedRow(props: State['savedRemotes'][number]) {
     return (
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2">
                 <div className="flex items-center">
                     <Avatar color="orange" />
                     <span className="pl-2 flex flex-col">
-                        <span className="text-white">Test Server</span>
-                        <span className="text-sm">@exampleremote</span>
+                        <span className="text-white">{props.name}</span>
+                        <span className="text-sm">@{props.handle}</span>
                     </span>
                 </div>
             </td>
@@ -129,13 +138,15 @@ function SavedRow() {
                 <div className="flex items-center">
                     <Avatar color="blue" />
                     <span className="pl-2 flex flex-col">
-                        <span className="text-white">Foobar</span>
-                        <span className="text-sm">@foobar</span>
+                        <span className="text-white">{props.username}</span>
+                        <span className="text-sm">@{props.userHandle}</span>
                     </span>
                 </div>
             </td>
-            <td className="p-2">https://connect.splist.org</td>
-            <td className="p-2">2 days ago</td>
+            <td className="p-2">{props.address}</td>
+            <td className="p-2">
+                <TimeSince date={props.disconnected} />
+            </td>
         </tr>
     );
 }
