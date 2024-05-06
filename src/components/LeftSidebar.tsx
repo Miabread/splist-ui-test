@@ -41,9 +41,9 @@ export function LeftSidebarHr({ title }: { title: string }) {
 
     return (
         <div className="flex items-center mt-5 mx-2">
-            <hr className="border-stone-400 border-b-1 w-4 flex-shrink-0" />
+            <hr className="border-stone-400 border-b w-4 flex-shrink-0" />
             <h2 className="text-stone-400 mx-2 text-sm font-bold">{title}</h2>
-            <hr className="border-stone-400 border-b-1 w-full" />
+            <hr className="border-stone-400 border-b w-full" />
         </div>
     );
 }
