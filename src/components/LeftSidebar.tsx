@@ -19,7 +19,7 @@ export function LeftSidebar({ children, title }: LeftSidebarProps) {
 
 interface LeftSidebarItemProps extends PropsWithChildren<JSX.IntrinsicElements['li']> {
     active: boolean;
-    icon: React.ReactElement;
+    icon?: React.ReactElement;
 }
 
 export function LeftSidebarItem({ children, active, icon }: LeftSidebarItemProps) {
@@ -30,7 +30,7 @@ export function LeftSidebarItem({ children, active, icon }: LeftSidebarItemProps
                 active ? 'bg-slate-600 text-white' : 'hover:bg-slate-700 hover:text-white',
             )}
         >
-            <span className="pr-2">{icon}</span>
+            {icon && <span className="pr-2">{icon}</span>}
             {children}
         </li>
     );

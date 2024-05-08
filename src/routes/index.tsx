@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { MainSidebar } from '../components/MainSidebar';
 import { LayoutContainer, LayoutHeader, LayoutMain } from '../components/Layout';
-import { Avatar } from '../components/Avatar';
+import { NamedAvatar } from '../components/Avatar';
 import { PropsWithChildren, ReactElement } from 'react';
 import { icons } from '../components/Icons';
 import { State, useStore } from '../state';
@@ -85,22 +85,22 @@ function ConnectedRow(props: State['savedRemotes'][number] & State['connectedRem
     return (
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2">
-                <div className="flex items-center">
-                    <Avatar color="orange" status={props.status} />
-                    <span className="pl-2 flex flex-col">
-                        <span className="text-white">{props.name}</span>
-                        <span className="text-sm">{props.statusMessage}</span>
-                    </span>
-                </div>
+                <NamedAvatar
+                    color="orange"
+                    status={props.status}
+                    style="home"
+                    name={props.name}
+                    message={props.statusMessage}
+                />
             </td>
             <td className="p-2">
-                <div className="flex items-center">
-                    <Avatar color="blue" status={props.userStatus} />
-                    <span className="pl-2 flex flex-col">
-                        <span className="text-white">{props.username}</span>
-                        <span className="text-sm">{props.userStatusMessage}</span>
-                    </span>
-                </div>
+                <NamedAvatar
+                    color="blue"
+                    status={props.userStatus}
+                    style="home"
+                    name={props.username}
+                    message={props.userStatusMessage}
+                />
             </td>
             <td className="p-2">
                 <span className="flex gap-3 items-center">
@@ -126,22 +126,16 @@ function SavedRow(props: State['savedRemotes'][number]) {
     return (
         <tr className="text-stone-300 border-slate-700 border-solid border-t border-b">
             <td className="p-2">
-                <div className="flex items-center">
-                    <Avatar color="orange" status={props.lastStatus} />
-                    <span className="pl-2 flex flex-col">
-                        <span className="text-white">{props.name}</span>
-                        <span className="text-sm">{props.lastStatusMessage}</span>
-                    </span>
-                </div>
+                <NamedAvatar
+                    color="orange"
+                    status={props.lastStatus}
+                    style="home"
+                    name={props.name}
+                    message={props.lastStatusMessage}
+                />
             </td>
             <td className="p-2">
-                <div className="flex items-center">
-                    <Avatar color="blue" />
-                    <span className="pl-2 flex flex-col">
-                        <span className="text-white">{props.username}</span>
-                        <span className="text-sm">@{props.userHandle}</span>
-                    </span>
-                </div>
+                <NamedAvatar color="blue" style="home" name={props.username} message={`@${props.userHandle}`} />
             </td>
             <td className="p-2">{props.address}</td>
             <td className="p-2">
